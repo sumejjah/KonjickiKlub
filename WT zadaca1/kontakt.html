@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konjicki klub "Visoko"</title>
+  <META name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/mapa.css">
+  <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
+</head>
+
+<body>
+  <div class="meni">
+    <div class="kolona prazno"></div>
+	<div class="kolona pet"><a href="zadaca.html">Pocetna</a></div>
+    <div class="kolona pet"><a href="oNama.html">O nama</a></div>
+    <div class="kolona pet"><a href="ponuda.html">Ponuda</a></div>
+ <div class="dropdown">
+  <button class="dropbtn">Iskustva</button>
+  <div class="dropdown-content">
+    <a href="posaljiPricu.html">Posaljite pricu</a>
+    <a href="ocjena.html">Anketa</a>
+    <a href="#">Terapeutsko jahanje</a>
+  </div>
+</div>
+    <div class="kolona pet"><a href="galerija.html">Galerija</a></div>
+    <div class="kolona pet"><a href="#">Kontakt</a></div>
+  </div>
+
+  <div class="lokacija">Kako doci do nas?</div>
+
+  <div class="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 43.9972877, lng: 18.1745222},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHLszbnnW9rbQLu5r2FjXgkhRWZIHBb8&callback=initMap"
+    async defer></script>
+    <div class="red">
+      <div class="kolona dva lijevo">
+        <h3>Radno vrijeme</h3>
+          <div>15:00 - 18:30</div>
+          <div id="napomena">Ukoliko zelite zakazati cas, potrebno
+            je izvrsiti rezervaciju minimalno dan ranije.</div>
+          <div>Zbog prirode nasih aktivnosti, desava se da se
+            nismo u mogucnosti javiti na telefon. Molimo Vas da
+            nam u takvim situacijama posaljete SMS poruku i nase
+            osoblje ce Vam uzvratiti poziv u najkracem mogucem roku.</div>
+            <div id="napomena">Kontak telefon : +38762 530 530</div>
+            <div>Sarajevska bb, Stara kasarna "Ahmet Fetahagic", 71300 Visoko,</div>
+      </div>
+      <div class="kolona dva">
+        <!--forma za pitanja-->
+        <form action="" class="formaPitanje">
+          <h3>Postavite pitanje</h3>
+          <label>
+            <input id="ime" type="text" name="ime" placeholder="Ime i prezime"/>
+          </label>
+          <label>
+            <input id="email" type="email" name="email" placeholder="Email"/>
+          </label>
+          <label>
+            <input id="telefon" type="text" name="telefon" placeholder="Broj telefona"/>
+          </label>
+          <label>
+            <textarea id="pitanje" name="pitanje" placeholder="Pitanje?"></textarea>
+          </label>
+
+          <label>
+            <input type="button" class="button" value="Posalji pitanje"/>
+          </label>
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>

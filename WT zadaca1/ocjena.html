@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <META name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/anketa.css">
+  <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
+</head>
+
+<body>
+  <div class="meni">
+    <div class="kolona prazno"></div>
+	<div class="kolona pet"><a href="zadaca.html">Pocetna</a></div>
+    <div class="kolona pet"><a href="oNama.html">O nama</a></div>
+    <div class="kolona pet"><a href="ponuda.html">Ponuda</a></div>
+	 <div class="dropdown">
+	  <button class="dropbtn">Iskustva</button>
+	  <div class="dropdown-content">
+		<a href="posaljiPricu.html">Posaljite pricu</a>
+		<a href="ocjena.html">Anketa</a>
+		<a href="#">Terapeutsko jahanje</a>
+	  </div>
+	</div>
+    <div class="kolona pet"><a href="galerija.html">Galerija</a></div>
+    <div class="kolona pet"><a href="kontakt.html">Kontakt</a></div>
+  </div>
+
+  <div class="red">
+    <!--forma za pitanja-->
+		<form action="" class="formaPitanje">
+      <h3>Ocijenite stranicu</h3>
+      <label>
+        <input id="ime" type="text" name="ime" placeholder="Korisnicko ime"/>
+      </label>
+      <label>
+        <input id="email" type="email" name="email" placeholder="Email"/>
+      </label>
+      <label>
+        <span>Da li ste posjetili klub?</span>
+        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <span>Da</span>
+        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <span>Ne</span>
+      </label>
+      <label>
+        <span>Da li ste biste preporučili klub?</span>
+        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <span>Da</span>
+        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <span>Ne</span>
+      </label>
+      <label>
+        <span>Da li ste dobili traženu informaciju?</span>
+        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <span>Da</span>
+        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <span>Ne</span>
+      </label>
+
+      <label>
+        <input type="button" class="button" value="Posalji"/>
+      </label>
+    </form>
+    
+  </div>
+</body>
+</html>

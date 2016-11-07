@@ -1,0 +1,156 @@
+@import url(https://fonts.googleapis.com/css?family=Great+Vibes);
+/* obična slova ispod */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(https://fonts.googleapis.com/css?family=Jura);
+
+.red{
+  padding: 10px;
+  width: 98%;
+  float:left;
+  min-height: 1px;
+}
+
+.meni {
+  font-family: Open Sans Condensed;
+  font-size: 16pt;
+  min-height: 1px;
+  float: left;
+  width: 100%;
+  background-color: rgba(266, 266, 266, 0.6);
+}
+.kolona.prazno{
+  width: 40%;
+}
+
+.kolona{
+  margin-left: 1%;
+  margin-right: 1%;
+  display: inline-block;
+  float: left;
+  min-height: 20px;
+}
+
+.kolona:first-child{
+  margin-left: 0px;
+}
+
+.kolona:last-child{
+  margin-right: 0px;
+}
+
+.kolona.pet{
+  font-family: Open Sans Condensed;
+  width: 8%;
+
+}
+
+.kolona.dva{
+  font-family: Open Sans Condensed;
+  font-size: 22pt;
+  text-align: center;
+  width: 48%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+a:hover{
+  background-color: silver;
+}
+
+a{
+	color:black;
+	text-decoration: none;
+}
+
+.formaPitanje{
+	margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 540px;
+  font-size: 20px;
+  color: black;
+  font-family: Open Sans Condensed;
+  text-shadow: 1px 1px 1px lightpink;
+  border: 1px solid gray;
+}
+
+.formaPitanje label{
+  display: block;
+  margin: opx;
+}
+
+.formaPitanje input[type="text"], .formaPitanje input[type="email"], .formaPitanje textarea, .formaPitanje select{
+  border: 1px solid gray;
+  height: 30px;
+  margin-bottom: 16px;
+  margin-right: 6px;
+  margin-left: 10px;
+  margin-top: 2px;
+  padding: 3px 3px 3px 3px;
+  width: 90%;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.formaPitanje h3{
+  text-align: center;
+}
+
+.formaPitanje span{
+  padding-left: 10px;
+}
+
+.formaPitanje textarea{
+  height: 100px;
+}
+
+.formaPitanje .button{
+  border-radius: 3px;
+  background-color: #E8ABA2;
+  padding: 10px 25px 10px 25px;
+  margin-left: 32%;
+  margin-right: 32%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  width: 30%;
+}
+
+.formaPitanje .button:hover{
+  background: #EB9A8F;
+}
+
+@media only screen and (max-width:640px){
+	.red{
+  width: 90%;
+  float:left;
+  min-height: 1px;
+}
+.kolona{
+  margin-left: 0%;
+  margin-right: 0%;
+  display: inline-block;
+  float: left;
+  min-height: 20px;
+}
+	
+.kolona.pet{
+	padding-left: 10px;
+  font-family: Open Sans Condensed;
+  width: 45%;
+
+}
+.kolona.prazno{
+  width: 0%;
+}
+
+
+.kolona.dva{
+  font-family: Open Sans Condensed;
+  font-size: 22pt;
+  text-align: center;
+  width: 100%;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
