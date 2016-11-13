@@ -23,44 +23,45 @@
     <div class="kolona pet"><a href="galerija.html">Galerija</a></div>
     <div class="kolona pet"><a href="kontakt.html">Kontakt</a></div>
   </div>
-
-  <div class="red">
+<div class = "red">
+  <div class="kolona dva">
     <!--forma za pitanja-->
-		<form action="" class="formaPitanje">
+	<form action="" class="formaAnketa">
       <h3>Ocijenite stranicu</h3>
-      <label>
-        <input id="ime" type="text" name="ime" placeholder="Korisnicko ime"/>
-      </label>
-      <label>
-        <input id="email" type="email" name="email" placeholder="Email"/>
-      </label>
+      
       <label>
         <span>Da li ste posjetili klub?</span>
-        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <input id="infoDaKLub" type="radio" name="klub" value="Da" checked/>
         <span>Da</span>
-        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <input id="infoNeKlub" type="radio" name="klub" value="Ne"/>
         <span>Ne</span>
       </label>
       <label>
         <span>Da li ste biste preporučili klub?</span>
-        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <input id="infoDa" type="radio" name="preporuka" value="Da" checked/>
         <span>Da</span>
-        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <input id="infoNe" type="radio" name="preporuka" value="Ne"/>
         <span>Ne</span>
       </label>
       <label>
         <span>Da li ste dobili traženu informaciju?</span>
-        <input id="infoDa" type="checkbox" name="infoDa" value="Da"/>
+        <input id="infoDa" type="radio" name="uspjeh" value="Da" checked/>
         <span>Da</span>
-        <input id="infoNe" type="checkbox" name="infoNe" value="ne"/>
+        <input id="infoNe" type="radio" name="uspjeh" value="Ne"/>
         <span>Ne</span>
       </label>
 
       <label>
         <input type="button" class="button" value="Posalji"/>
       </label>
-    </form>
-    
+    </form>    
+  </div>
+  
+  <div class="kolona dva">
+	<div class="rezultati">
+		<p>ovdje ce biti rezultati ankete</p>
+	</div>
+  </div>
   </div>
 </body>
 </html>

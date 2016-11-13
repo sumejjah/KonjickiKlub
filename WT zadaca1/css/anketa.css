@@ -62,7 +62,8 @@ a{
 	text-decoration: none;
 }
 
-.formaPitanje{
+.formaAnketa
+{
 	margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
@@ -74,12 +75,12 @@ a{
   border: 1px solid gray;
 }
 
-.formaPitanje label{
+.formaAnketa label{
   display: block;
-  margin: opx;
+  margin: 0px;
 }
 
-.formaPitanje input[type="text"], .formaPitanje input[type="email"], .formaPitanje textarea, .formaPitanje select{
+.formaAnketa input[type="text"], .formaAnketa input[type="email"], .formaAnketa textarea, .formaAnketa select{
   border: 1px solid gray;
   height: 30px;
   margin-bottom: 16px;
@@ -92,19 +93,18 @@ a{
   border-radius: 8px;
 }
 
-.formaPitanje h3{
+.formaAnketa h3{
   text-align: center;
 }
 
-.formaPitanje span{
+.formaAnketa span{
   padding-left: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
-.formaPitanje textarea{
-  height: 100px;
-}
 
-.formaPitanje .button{
+.formaAnketa .button{
   border-radius: 3px;
   background-color: #E8ABA2;
   padding: 10px 25px 10px 25px;
@@ -115,12 +115,27 @@ a{
   width: 30%;
 }
 
-.formaPitanje .button:hover{
+.formaAnketa .button:hover{
   background: #EB9A8F;
 }
 
+.rezultati{
+	border: 2px solid pink;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	height: 245px;
+	width: 90%;
+}
+
+.rezultati p
+{
+	color: black;
+	text-shadow: 1px 1px 1px lightgray;
+}
+
 @media only screen and (max-width:640px){
-	.red{
+.red{
   width: 90%;
   float:left;
   min-height: 1px;
@@ -152,5 +167,15 @@ a{
   color: white;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+.rezultati{
+	border: 2px solid pink;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	height: 245px;
+	width: 95%;
 }
 }

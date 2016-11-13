@@ -3,8 +3,8 @@
 @import url(https://fonts.googleapis.com/css?family=Satisfy);
 
 .map {
-        height: 50%;
-        width: 60%;
+        height: 340px;
+        width: 80%;
         padding-left: 10%;
       }
 
@@ -86,6 +86,7 @@ ul>li{
 .formaPitanje{
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 5%;
   max-width: 500px;
   font-size: 20px;
   font-family: Open Sans Condensed;
@@ -95,7 +96,11 @@ ul>li{
 
 .formaPitanje label{
   display: block;
-  margin: opx;
+  margin: 0px;
+}
+
+.formaPitanje p{
+	color: red;
 }
 
 .formaPitanje input[type="text"], .formaPitanje input[type="email"], .formaPitanje textarea, .formaPitanje select{

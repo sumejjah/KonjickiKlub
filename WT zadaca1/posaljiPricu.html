@@ -4,6 +4,7 @@
   <META name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/prica.css">
   <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
+  <script type="text/javascript" src="js/validacija.js"></script>
 </head>
 
 <body>
@@ -23,18 +24,18 @@
     <div class="kolona pet"><a href="kontakt.html">Kontakt</a></div>
   </div>
 <div class="red">
-<form action="" method="post" class="formaPrica">
+<form action="" method="post" name="posaljiPricu" class="formaPrica" onsubmit="return validirajPricu();">
     <h1>
         <span>Pošaljite nam Vašu priču.</span>
     </h1>
     <label>
         <span>Ime:</span>
-        <input id="name" type="text" name="name" placeholder="Puno ime" />
+        <input id="name" type="text" name="ime" placeholder="Puno ime" />
     </label>
 
     <label>
         <span>Email :</span>
-        <input id="email" type="email" name="email" placeholder="Email" />
+        <input id="email" type="email" name="email" placeholder="Email" required/>
     </label>
 
     <label>
@@ -44,8 +45,12 @@
 
      <label>
         <span>&nbsp;</span>
-        <input type="button" class="button" value="Pošalji" />
+        <input type="submit" class="button" value="Pošalji" />
     </label>
+	<label>
+	<span>&nbsp;</span>
+	<p name="poruka" id="poruka"></p>
+	</label>
 </form>
 </div>
 </body>

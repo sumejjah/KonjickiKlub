@@ -37,6 +37,11 @@ a{
     border-bottom:1px solid #E4E4E4;
     color: black;
 }
+
+.formaPrica label>p{
+	color : red;
+	margin: 0px;
+}
 .formaPrica h1>span {
     display: block;
     font-size: 30px;

@@ -5,6 +5,8 @@
   <META name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/mapa.css">
   <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHLszbnnW9rbQLu5r2FjXgkhRWZIHBb8&callback=initMap" async defer></script>  
+	<script src="js/validacija.js"></script>
 </head>
 
 <body>
@@ -27,18 +29,8 @@
 
   <div class="lokacija">Kako doci do nas?</div>
 
-  <div class="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.9972877, lng: 18.1745222},
-          zoom: 8
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHLszbnnW9rbQLu5r2FjXgkhRWZIHBb8&callback=initMap"
-    async defer></script>
+  <div class="map" id="map"></div>
+  
     <div class="red">
       <div class="kolona dva lijevo">
         <h3>Radno vrijeme</h3>
@@ -54,24 +46,27 @@
       </div>
       <div class="kolona dva">
         <!--forma za pitanja-->
-        <form action="" class="formaPitanje">
+        <form action="" class="formaPitanje" name="formaPitanje" onsubmit="return validirajPitanje();">
           <h3>Postavite pitanje</h3>
           <label>
             <input id="ime" type="text" name="ime" placeholder="Ime i prezime"/>
           </label>
           <label>
-            <input id="email" type="email" name="email" placeholder="Email"/>
+            <input id="email" type="email" name="email" pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="Email" required/>
           </label>
           <label>
-            <input id="telefon" type="text" name="telefon" placeholder="Broj telefona"/>
+            <input id="telefon" type="text" name="telefon" pattern="[0-9]*" placeholder="Broj telefona" required/>
           </label>
           <label>
             <textarea id="pitanje" name="pitanje" placeholder="Pitanje?"></textarea>
           </label>
 
           <label>
-            <input type="button" class="button" value="Posalji pitanje"/>
+            <input type="submit" class="button" value="Posalji pitanje"/>
           </label>
+		  <label>
+			<p id="poruka" name="poruka"></p>
+		  </label>
         </form>
       </div>
     </div>
