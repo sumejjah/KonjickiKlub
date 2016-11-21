@@ -11,14 +11,7 @@ body{
   background-size: 100% 100vh;
   background-repeat: no-repeat;
 }
-a:hover{
-  background-color: white;
-}
 
-a{
-	color: black;
-	text-decoration: none;
-}
 .formaPrica {
     margin-left:auto;
     margin-right:auto;
@@ -95,23 +88,9 @@ a{
 }
 
 .red{
-  width: 100%;
+  width: 96%;
   float:left;
   min-height: 1px;
-}
-
-.meni {
-  font-family: Open Sans Condensed;
-  font-size: 16pt;
-  min-height: 1px;
-  float: left;
-  width: 100%;
-  margin-bottom: 6%;
-  background-color: rgba(266, 266, 266, 0.6);
-}
-
-.kolona.prazno{
-  width: 40%;
 }
 
 .kolona{
@@ -130,11 +109,6 @@ a{
   margin-right: 0px;
 }
 
-.kolona.pet{
-  font-family: Open Sans Condensed;
-  width: 8%;
-
-}
 
 @media only screen and (max-width: 700px)
 {
@@ -143,24 +117,14 @@ a{
       margin-right:auto;
       max-width: 600px;
       height: 80%;
-      background: rgba(51, 153, 102, 0.7);
+      background: rgba(255, 255, 255, 0.1);
       padding: 25px 15px 25px 10px;
-      margin-left: 2%;
-      margin-right: 2%;
+      margin-left: 1%;
+      margin-right: 1%;
       font: 20px Open Sans Codensed, serif;
       color: #888;
       text-shadow: 1px 1px 1px #FFF;
       border:1px solid #E4E4E4;
-  }
-
-  .kolona.prazno{
-    width: 0%;
-  }
-  .kolona.pet{
-    font-family: Open Sans Condensed;
-    width: 45%;
-	padding-left: 10px;
-
   }
   .kolona{
     margin-left: 0%;
@@ -169,4 +133,12 @@ a{
     float: left;
     min-height: 20px;
   }
+  
+  
+.red{
+  width: 95%;
+  float:left;
+  min-height: 1px;
+  margin:1%;
+}
 }

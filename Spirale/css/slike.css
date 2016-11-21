@@ -26,11 +26,31 @@ a:hover{
 background-color: rgba(255, 255, 102, 0.7);
 }
 
-a{
+
+.kolona a{
 	color: black;
 	text-decoration: none;
 }
 
+div .slika{
+	margin: 0px;
+	border: 1px solid #ccc;
+}
+
+div .slika:hover{
+	border: 1px solid black;
+}
+
+div .slika img{
+	width: 100%;
+	height: 70vh;
+}
+
+.res{
+	padding: 6px;
+	width: 31%;
+	float: left;
+}
 
 .meni {
   font-family: Open Sans Condensed;
@@ -61,12 +81,6 @@ a{
   width: 33%;
 }
 
-img {
-  width: 100%;
-  height: 70vh;
-  border-radius: 4px;
-  margin-bottom: 5px;
-}
 
 @media only screen and (max-width: 800px){
   .kolona.tri{
@@ -87,8 +101,24 @@ img {
   }
 }
 
+@media only screen and (max-width: 700px){
+    .res {
+        width: 48%;
+        margin: 6px 0;
+    }
+}
 
-@media only screen and (max-width: 500px){
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media only screen and (max-width: 570px){
+	.res {
+        width: 100%;
+    }
   .kolona.tri{
     width: 100%;
   }
@@ -101,9 +131,4 @@ img {
 	padding-left: 10px;
   }
 
-  img {
-    width: 100%;
-    height: 70vh;
-    border-radius: 4px;
-  }
 }

@@ -5,24 +5,10 @@
   <link rel="stylesheet" type="text/css" href="css/prica.css">
   <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
   <script type="text/javascript" src="js/validacija.js"></script>
+  <script type="text/javascript" src="js/localstorage.js"></script>
 </head>
 
-<body>
-  <div class="meni">
-    <div class="kolona prazno"></div>
-	<div class="kolona pet"><a href="zadaca.html">Pocetna</a></div>
-    <div class="kolona pet"><a href="oNama.html">O nama</a></div>
-    <div class="kolona pet"><a href="ponuda.html">Ponuda</a></div>
- <div class="dropdown">
-  <button class="dropbtn">Iskustva</button>
-  <div class="dropdown-content">
-    <a href="posaljiPricu.html">Posaljite pricu</a>
-    <a href="ocjena.html">Anketa</a>
-    <a href="#">Terapeutsko jahanje</a>
-  </div>
-</div>    <div class="kolona pet"><a href="galerija.html">Galerija</a></div>
-    <div class="kolona pet"><a href="kontakt.html">Kontakt</a></div>
-  </div>
+<body onload="ucitaj()">
 <div class="red">
 <form action="" method="post" name="posaljiPricu" class="formaPrica" onsubmit="return validirajPricu();">
     <h1>
@@ -30,7 +16,7 @@
     </h1>
     <label>
         <span>Ime:</span>
-        <input id="name" type="text" name="ime" placeholder="Puno ime" />
+        <input id="name" type="text" name="ime" placeholder="Puno ime"/>
     </label>
 
     <label>
@@ -45,7 +31,7 @@
 
      <label>
         <span>&nbsp;</span>
-        <input type="submit" class="button" value="Pošalji" />
+        <input type="submit" class="button" value="Pošalji" onclick="spremi()"/>
     </label>
 	<label>
 	<span>&nbsp;</span>

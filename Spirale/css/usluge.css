@@ -5,18 +5,10 @@
 /* ispod pisana slova*/
 @import url(https://fonts.googleapis.com/css?family=Satisfy);
 
-#ponuda {
+body {
   background-image: url(../images/winterhorse.png);
   background-repeat: no-repeat;
   background-size: 100% 100vh;;
-}
-a:hover{
-  background-color: white;
-}
-
-a{
-	color: black;
-	text-decoration: none;
 }
 
 .red{
@@ -24,10 +16,6 @@ a{
   width: 95%;
   float:left;
   min-height: 1px;
-}
-
-.kolona.prazno{
-  width: 40%;
 }
 
 .kolona{
@@ -52,14 +40,6 @@ a{
 
 }
 
-.meni{
-  font-family: Open Sans Condensed;
-  font-size: 16pt;
-  min-height: 1px;
-  float: left;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.6);
-}
 .kolona.dva.naslov{
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
@@ -85,14 +65,7 @@ a{
 }
 
 @media only screen and (max-width: 700px){
-  .kolona.prazno{
-    width: 0%;
-  }
-  .kolona.pet{
-    font-family: Open Sans Condensed;
-    width: 45%;
-	padding-left: 10px;
-  }
+  
   .kolona.dva{
     color: black;
     width: 85%;

@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Great+Vibes);
+/* obična slova ispod */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(https://fonts.googleapis.com/css?family=Jura);
+/* ispod pisana slova*/
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
+
+body {
+    background-image: url(../images/bijeliKonj.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+
+.meni {
+  font-family: Open Sans Condensed;
+  font-size: 16pt;
+  min-height: 1px;
+  float: left;
+  width: 100%;
+  background-color: rgba(266, 266, 266, 0.6);
+}
+
+.kolona.prazno{
+  width: 50%;
+}
+
+.kolona{
+  margin-left: 1%;
+  margin-right: 1%;
+  display: inline-block;;
+  float: left;
+  min-height: 20px;
+}
+
+.kolona:first-child{
+  margin-left: 0px;
+}
+
+.kolona:last-child{
+  margin-right: 0px;
+}
+
+.kolona.pet{
+  font-family: Open Sans Condensed;
+  width: 8%;
+
+}
+
+a:hover{
+  background-color: rgba(266, 266, 266, 0.9);
+}
+
+a{
+	text-decoration: none;
+	color:black;
+}

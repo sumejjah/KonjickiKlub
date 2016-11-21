@@ -5,15 +5,10 @@
 /* ispod pisana slova*/
 @import url(https://fonts.googleapis.com/css?family=Satisfy);
 
-body {
-    background-image: url(../images/bijeliKonj.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
 
 .red{
   padding: 10px;
-  width: 95%;
+  width: 94%;
   float:left;
   min-height: 1px;
 }
@@ -105,26 +100,6 @@ a{
 	color:black;
 }
 
-@media only screen and (max-width: 750px){
-
-  .kolona.dva{
-    font-family: Open Sans Condensed;
-    font-size: 22pt;
-    text-align: center;
-    width: 80%;
-    background-color: rgba(26, 26,26, 0.25);
-    border-radius: 8px;
-    color: white;
-  }
-
-  .kolona.dva.naslov{
-    margin-top: 35pt;
-    font-family: Great Vibes;
-    font-size: 38pt;
-  }
-
-}
-
 @media only screen and (max-width: 640px){
   .kolona.prazno{
     width: 0%;
@@ -133,22 +108,6 @@ a{
     font-family: Open Sans Condensed;
     width: 45%;
 
-  }
-
-  .kolona.dva{
-    font-family: Open Sans Condensed;
-    font-size: 22pt;
-    text-align: center;
-    width: 95%;
-    background-color: rgba(26, 26,26, 0.25);
-    border-radius: 8px;
-    color: white;
-  }
-
-  .kolona.dva.naslov{
-    margin-top: 35pt;
-    font-family: Great Vibes;
-    font-size: 38pt;
   }
 
   .meni {

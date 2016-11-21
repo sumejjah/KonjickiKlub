@@ -1,0 +1,32 @@
+﻿<!DOCTYPE HTML>
+<html>
+<HEAD>
+  <META name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/naslovna.css">
+  <link rel="stylesheet" type="text/css" href="css/dropbtn.css">
+  <script type="text/javascript" src="js/localstorage.js"></script>
+  <script type="text/javascript" src="js/prikazSlika.js"></script>
+  <script type="text/javascript" src="js/validacija.js"></script>
+</HEAD>
+
+<BODY onload="prikaziSadrzaj('pocetnaStrana.html')">
+<script type="text/javascript" src="js/funkcija.js"></script>
+<div class="meni">
+  <div class="kolona prazno"></div>
+  <div class="kolona pet"><a href="#" onclick="prikaziSadrzaj('oNama.html')">O nama</a></div>
+  <div class="kolona pet"><a href="#" onclick="prikaziSadrzaj('ponuda.html')">Ponuda</a></div>
+  <div class="dropdown">
+	<button class="dropbtn">Iskustva</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="prikaziSadrzaj('posaljiPricu.html'); ucitaj();">Posaljite pricu</a>
+    <a href="#" onclick="prikaziSadrzaj('ocjena.html')">Anketa</a>
+    <a href="#" id="peti">Terapeutsko jahanje</a>
+  </div>
+</div>
+  <div class="kolona pet"><a href="#" onclick="prikaziSadrzaj('carousel.html')">Galerija</a></div>
+  <div class="kolona pet"><a href="#" onclick="prikaziSadrzaj('kontakt.html')">Kontakt</a></div>
+</div>
+
+<div id="polje"></div>
+</BODY>
+</html>

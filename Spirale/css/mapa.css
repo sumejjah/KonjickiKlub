@@ -14,20 +14,6 @@
   min-height: 1px;
 }
 
-.meni {
-  font-family: Open Sans Condensed;
-  font-size: 16pt;
-  min-height: 1px;
-  float: left;
-  width: 100%;
-  margin-bottom: 6%;
-  background-color: white;
-}
-
-.kolona.prazno{
-  width: 40%;
-}
-
 .kolona{
   margin-left: 1%;
   margin-right: 1%;
@@ -44,16 +30,13 @@
   margin-right: 0px;
 }
 
-.kolona.pet{
-  font-family: Open Sans Condensed;
-  width: 8%;
-}
-
 .kolona.dva{
   margin-top: 3%;
   font-family: Open Sans Condensed;
   text-align: center;
   width: 46%;
+  background-color: white;
+  color: black;
 }
 
 .kolona.dva.lijevo > div{
@@ -86,7 +69,8 @@ ul>li{
 .formaPitanje{
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
+  margin-top: 10%;
   max-width: 500px;
   font-size: 20px;
   font-family: Open Sans Condensed;
@@ -138,23 +122,13 @@ a{
 }
 
 @media only screen and (max-width: 640px){
-	.kolona{
+.kolona{
   margin-left: 0%;
   margin-right: 0%;
   display: inline-block;
   float: left;
   min-height: 20px;
 }
-
-  .kolona.prazno{
-    width: 0%;
-  }
-
-  .kolona.pet{
-    font-family: Open Sans Condensed;
-    width: 45%;
-	padding-left: 10px;
-  }
 
   .kolona.dva{
     margin-top: 3%;
@@ -165,6 +139,8 @@ a{
     font-family: Open Sans Condensed;
     text-align: center;
     width: 90%;
+	color: black;
+	background-color: white;
   }
   .kolona.dva.lijevo > div{
     margin-right: 0%;
