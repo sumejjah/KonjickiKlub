@@ -4,6 +4,9 @@ Sumejja Halilović, 17126
 
 Prikaz novosti i informacija o konjičkom klubu te mnogih zanimljivosti o konjima, mogućnost postavljanja pitanja te zakazivanja termina jahanja. 
 
+Spirala I
+
+
 I - Šta je urađeno?
 
 	a)Skice: urađeno
@@ -50,3 +53,19 @@ WT zadaca1 -
 			kontakt.html - informacije o klubu tipa broj telefona, adresa...
 			
 			galerija.html - prikaz fotografija 
+			
+
+Spirala 3
+
+
+	I - Napravljena serijalizacija podataka na formama za popunjavanje ankete (ocjena.php) i formi za unos komentara (posaljiPricu.php).
+	Za sad, samo se moze logovati administrator (username: admin, password: tajna). Kada se loguje na podstranici ponuda.php se ispise tabela ponuda koju je moguce mijenjati.
+	Urađena je validacija.
+	
+	II - Admin može downloadovati tabelu koja sadrzi ponude (cijene i termine). Podaci se citaju iz .xmla
+	
+	III - Također je moguće dowloadovati ovu tabelu i u .pdf formatu. Podaci se citaju iz -xmla.
+	
+	IV - Napravljena opcija pretrage, pretrazuju se ostavljeni komentari. U komentari.xml se cuvaju svi komentari. Pretraga se vrsi pomocu autora komentara i samog teksta komentara.
+	
+	Deployment: http://konjickiklubshitf-konjickiklub.44fs.preview.openshiftapps.com/
