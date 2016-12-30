@@ -19,7 +19,6 @@
   min-height: 1px;
   float: left;
   width: 100%;
-  background-color: rgba(266, 266, 266, 0.6);
 }
 .naslov{
   font-family:Great Vibes;
@@ -65,16 +64,6 @@
   font-family: Open Sans Condensed;
   width: 8%;
 
-}
-
-.kolona.dva{
-  font-family: Open Sans Condensed;
-  font-size: 22pt;
-  text-align: center;
-  width: 48%;
-  background-color: rgba(26, 26,26, 0.25);
-  border-radius: 20px;
-  color: white;
 }
 
 .kolona.dva.naslov{

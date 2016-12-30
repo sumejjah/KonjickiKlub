@@ -66,6 +66,11 @@ ul>li{
   font-size: 30pt;
 }
 
+.lokacija p{
+	display: inline-block;
+    float: left;
+}
+
 .formaPitanje{
   margin-left: auto;
   margin-right: auto;

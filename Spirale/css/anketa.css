@@ -8,6 +8,7 @@
   width: 98%;
   float:left;
   min-height: 1px;
+  
 }
 
 .kolona{
@@ -31,10 +32,10 @@
   font-size: 22pt;
   text-align: center;
   width: 48%;
-  color: white;
+  color: black;
   margin-left: auto;
   margin-right: auto;
-  background-color: white;
+  background-color: transparent;
 }
 a:hover{
   background-color: silver;
@@ -136,10 +137,10 @@ a{
   font-size: 22pt;
   text-align: center;
   width: 100%;
-  color: white;
+  color: black;
   margin-left: auto;
   margin-right: auto;
-  background-color: white;
+  background-color: transparent;
 }
 .rezultati{
 	border: 2px solid pink;
