@@ -68,4 +68,4 @@ Spirala 3
 	
 	IV - Napravljena opcija pretrage, pretrazuju se ostavljeni komentari. U komentari.xml se cuvaju svi komentari. Pretraga se vrsi pomocu autora komentara i samog teksta komentara.
 	
-	Deployment: http://konjickiklubshitf-konjickiklubv.44fs.preview.openshiftapps.com/
+	Deployment: http://konjickiklubshitf-konjickiklub.44fs.preview.openshiftapps.com/
