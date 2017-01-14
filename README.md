@@ -72,15 +72,21 @@ Spirala 3
 	
 	
 	
-SPIRALA V
+SPIRALA IV
 
 I - Šta je urađeno?
+
 a) Dodane su tri baze: administrator, usluga i komentar. Usluga ima FK na administratora (kako bi se znalo ko je dodao uslugu), a komentar ima FK na uslugu (kako bi se znalo koja usluga se komentarise).
 	Bazu sam exportovala u folder Baza pod nazivom wt_spirala4.
+	
 b) Na formi ponuda (samo) administrator moze vidjeti dugme "Ucitaj u bazu". Podaci ce se ucitati samo jednom.
+
 c) Prepravila sam sve PHP skripte tako da se podaci cuvaju i kupe iz baze a ne iz XML-a.
+
 d) Deployment:
+
 e) Unutar skripte vratiJSON.php predstavlja traženu metodu. 
+
 f) U folderu POSTMANscreenshot su screenshoti za tri tabele: usluga, anketa i komentar.
 
 II - Sta nije urađeno?
@@ -88,5 +94,6 @@ Depolyment.
 
 III - Bug-ovi koje ste primijetili ali niste stigli ispraviti, a znate rješenje (opis rješenja)
 /
+
 IV  - Bug-ovi koje ste primijetili ali ne znate rješenje
 /
