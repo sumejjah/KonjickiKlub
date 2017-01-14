@@ -1,40 +1,30 @@
 <?php
     
-    if (file_exists('usluge.xml'))  
-    {
-        $xml = simplexml_load_file('usluge.xml'); 
-        $x = 1;
-        $v = [];
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
 
-        $header = array('Naziv', 'Trajanje', 'Cijena');
-
-        $csvFile = fopen('usluge.csv', 'w');
-        fputcsv($csvFile, $header);      
-        fclose($csvFile);
-
-        $result = $xml->xpath('//usluga'); // The xpath method searches the SimpleXML node for children matching the XPath path.
-
-        foreach ($result as $r) 
-        {           
-            $child = $xml->xpath('//usluga['.$x .']/*');      
-
-            foreach ($child as $value) {
-                $v[] = $value;         
-            }
-
-            // Upisivanje vrijednosti za 1 red
-            $csvFile = fopen('usluge.csv', 'a');
-            fputcsv($csvFile, $v);      
-            fclose($csvFile);  
-
-            $v = []; // Oslobađanje niza 
-            $x++; // Idi na sljedeći <usluga> tag
-        }
-
-        $contenttype = "application/force-download";
-        header("Content-Type: " . $contenttype);
-        header("Content-Disposition: attachment; filename=\"" . basename('usluge.csv') . "\";");
-        readfile('usluge.csv');
-        exit();
-    }
+	// Create connection
+	$db_con = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($db_con->connect_error) {
+		die("Connection failed: " . $db_con->connect_error);
+	} 
+    
+	$result = $db_con->query('SELECT * FROM `usluga`');
+	if (!$result) die('Couldn\'t fetch records');
+	
+	$fp = fopen('php://output', 'w');
+	if ($fp && $result) {
+		header('Content-Type: text/csv');
+		header('Content-Disposition: attachment; filename="export.csv"');
+		header('Pragma: no-cache');
+		header('Expires: 0');
+		while ($row = $result->fetch_array(MYSQLI_NUM)) {
+			fputcsv($fp, array_values($row));
+		}
+		die;
+	}
+	header("Location: ponuda.php");
 ?>

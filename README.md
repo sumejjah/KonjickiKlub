@@ -59,7 +59,7 @@ Spirala 3
 
 
 	I - Napravljena serijalizacija podataka na formama za popunjavanje ankete (ocjena.php) i formi za unos komentara (posaljiPricu.php).
-	Za sad, samo se moze logovati administrator (username: admin, password: tajna). Kada se loguje na podstranici ponuda.php se ispise tabela ponuda koju je moguce mijenjati.
+	Za sad, samo se moze logovati administrator (username: admin, password: password). Kada se loguje na podstranici ponuda.php se ispise tabela ponuda koju je moguce mijenjati.
 	Urađena je validacija.
 	
 	II - Admin može downloadovati tabelu koja sadrzi ponude (cijene i termine). Podaci se citaju iz .xmla
@@ -69,3 +69,23 @@ Spirala 3
 	IV - Napravljena opcija pretrage, pretrazuju se ostavljeni komentari. U komentari.xml se cuvaju svi komentari. Pretraga se vrsi pomocu autora komentara i samog teksta komentara.
 	
 	Deployment: http://konjickiklubshitf-konjickiklub.44fs.preview.openshiftapps.com/
+	
+	
+	
+SPIRALA V
+
+I - Šta je urađeno?
+a) Dodane su tri baze: administrator, usluga i komentar. Usluga ima FK na administratora (kako bi se znalo ko je dodao uslugu), a komentar ima FK na uslugu (kako bi se znalo koja usluga se komentarise).
+b) Na formi ponuda (samo) administrator moze vidjeti dugme "Ucitaj u bazu". Podaci ce se ucitati samo jednom.
+c) Prepravila sam sve PHP skripte tako da se podaci cuvaju i kupe iz baze a ne iz XML-a.
+d) Deployment:
+e) Unutar skripte vratiJSON.php predstavlja traženu metodu. 
+f) U folderu POSTMANscreenshot su screenshoti za tri tabele: usluga, anketa i komentar.
+
+II - Sta nije urađeno?
+Depolyment.
+
+III - Bug-ovi koje ste primijetili ali niste stigli ispraviti, a znate rješenje (opis rješenja)
+/
+IV  - Bug-ovi koje ste primijetili ali ne znate rješenje
+/

@@ -71,15 +71,36 @@ else{
   </div>
   
   <?php
-  
 if(isset($_REQUEST['anketiranje'])){
-	$podaci = simplexml_load_file('anketa.xml');
-//dodavanje 
 	$klub = $_REQUEST['klub'];
 	$preporuka = $_REQUEST['preporuka'];
 	$uspjeh = $_REQUEST['uspjeh'];
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+
+	$sql = "INSERT INTO anketa (pitanje1, pitanje2, pitanje3) VALUES ('$klub', '$preporuka', '$uspjeh')";
+	if ($conn->query($sql) === TRUE) {
+    echo "";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+
+	$conn->close();
 	
-	$child = $podaci->addChild("odgovori");
+}
+	//$podaci = simplexml_load_file('anketa.xml');
+	
+	
+	/*$child = $podaci->addChild("odgovori");
 	$child->addChild("prvo", $klub);
 	$child->addChild("drugo", $preporuka);
 	$child->addChild("trece", $uspjeh);
@@ -94,7 +115,36 @@ if(isset($_REQUEST['anketiranje'])){
 		if($u->drugo == 'Da') {$da2 = $da2+1;} else {$ne2 = $ne2 + 1;}
 		if($u->trece == 'Da') {$da3 = $da3+1;} else {$ne3 = $ne3 + 1;}
 
+	}*/
+	
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+
+	$sql = "SELECT pitanje1, pitanje2, pitanje3 FROM anketa";
+	$result = $conn->query($sql);
+	
+	$da1 = 0; $da2 = 0; $da3=0; $ne1 = 0; $ne2 = 0; $ne3 = 0;
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			//echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+			if($row["pitanje1"] == 'Da') {$da1 = $da1+1;} else {$ne1 = $ne1 + 1;}
+			if($row["pitanje2"] == 'Da') {$da2 = $da2+1;} else {$ne2 = $ne2 + 1;}
+			if($row["pitanje3"] == 'Da') {$da3 = $da3+1;} else {$ne3 = $ne3 + 1;}
+		}
+	} else {
+		echo "0 results";
 	}
+	$conn->close();
+	
 	print "<div class='kolona dva'><div class='rezultati'><p>Da li ste posjetili klub? Da ".$da1." Ne: ".$ne1."</p><p>Da li biste preporučili klub? Da ".$da2." Ne: ".$ne2."</p><p>Da li ste dobili traženu informaciju? Da ".$da3." Ne: ".$ne3."</p></div></div>";
 	
 ?> 

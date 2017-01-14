@@ -1,24 +1,45 @@
 <?php
-$xml=simplexml_load_file('korisnici.xml');
+//$xml=simplexml_load_file('korisnici.xml');
 
 if(isset($_REQUEST['login'])){
-	$username = htmlspecialchars($_REQUEST['username']);
-	$password = htmlspecialchars($_REQUEST['password']);
+	$usernameA = htmlspecialchars($_REQUEST['username']);
+	$passwordA = htmlspecialchars($_REQUEST['password']);
 	
-	if(strlen($username)< 4){ $_SESSION['greska'] = 'Korisničko ime je prekratko!';}
+	if(strlen($usernameA)< 4){ $_SESSION['greska'] = 'Korisničko ime je prekratko!';}
 	
-	if(strlen($password)< 4){ $_SESSION['greska'] = 'Password je prekratak!';}
+	if(strlen($passwordA)< 4){ $_SESSION['greska'] = 'Password je prekratak!';}
 
-	foreach($xml->korisnik as $k){
-		if($k->username == $username && $k->password == $password){
-			session_start();
-			$_SESSION['username'] = $username;
-			$_SESSION['password'] = $password;
-			$_SESSION['loggedin'] = true;
+		$servername = "localhost";
+		$username = "wtuser";
+		$password = "wtpassword";
+		$dbname = "wt_spirala4";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+
+		$sql = "SELECT * FROM administrator";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
 			
-			header('Location: zadaca.php');
+			while($row = $result->fetch_assoc()) {
+				if($row["username"] == $usernameA && $row["password"] == $passwordA) {
+					session_start();
+					$_SESSION['username'] = $username;
+					$_SESSION['password'] = $password;
+					$_SESSION['loggedin'] = true;
+					
+					header('Location: zadaca.php');
+				}
+			}
+		} else {
+			echo "0 results";
 		}
-	}
+		$conn->close();
 	
 }
 

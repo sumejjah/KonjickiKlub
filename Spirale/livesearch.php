@@ -1,40 +1,49 @@
 <?php
-$xmlDoc=new DOMDocument();
-$xmlDoc->load("komentari.xml");
+$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
 
-$x=$xmlDoc->getElementsByTagName('link');
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
 
-//get the q parameter from URL
-$q=$_GET["q"];
+	$sql = "SELECT * FROM komentar";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+    $q=$_GET["q"];
+	$hint = "";
+	$brojac = 0;
+	if (strlen($q)>0) {
+		while($row = $result->fetch_assoc()) {
+		  //vrsimo pretragu po autoru i komentaru 
+		  if (stristr($row["usluga"],$q) || stristr($row["tekst"],$q)) {
+				$brojac = $brojac + 1;
+			if ($hint=="") {
+				  $hint="<p>".$row["usluga"]." ".$row["tekst"]."</p>";
+				} else {
+				  $hint=$hint."</br><p>". 
+				  $row["usluga"] . 
+				  $row["tekst"] . "</p>";
+				}
+				if($brojac >= 10){
+					break;
+		  }
+	  }
+	}
+	
+	} 
+	}
+	else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 
-//lookup all links from the xml file if length of q>0
-if (strlen($q)>0) {
-  $hint="";
-  $brojac = 0;
-  for($i=0; $i<($x->length); $i++) {
-    $y=$x->item($i)->getElementsByTagName('autor');
-    $z=$x->item($i)->getElementsByTagName('komentar');
-    if ($y->item(0)->nodeType==1) {
-      //find a link matching the search text
-      if (stristr($y->item(0)->childNodes->item(0)->nodeValue,$q) || stristr($z->item(0)->childNodes->item(0)->nodeValue,$q)) {
-		  $brojac = $brojac + 1;
-        if ($hint=="") {
-          $hint="<p>" . 
-          $y->item(0)->childNodes->item(0)->nodeValue." ". 
-          $z->item(0)->childNodes->item(0)->nodeValue . "</p>";
-        } else {
-          $hint=$hint . "</br><p>" . 
-          $y->item(0)->childNodes->item(0)->nodeValue . 
-          $z->item(0)->childNodes->item(0)->nodeValue . "</p>";
-        }
-		if($brojac >= 10){
-			break;
-		}
-      }
-    }
-  }
-}
-
+	$conn->close();
+	
 // Set output to "no suggestion" if no hint was found
 // or to the correct values
 if ($hint=="") {

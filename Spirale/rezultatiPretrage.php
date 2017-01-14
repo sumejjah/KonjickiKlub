@@ -37,33 +37,45 @@ else{
 if(isset($_REQUEST['pretrazi'])){
 	$unos = $_REQUEST['unos'];
 	
-	$xmlDoc=new DOMDocument();
-$xmlDoc->load("komentari.xml");
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
 
-$x=$xmlDoc->getElementsByTagName('link');
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
 
-$q=$unos;
-$odgovor=0;
-if (strlen($q)>0) {
-  for($i=0; $i<($x->length); $i++) {
-    $y=$x->item($i)->getElementsByTagName('autor');
-    $z=$x->item($i)->getElementsByTagName('komentar');
-    if ($y->item(0)->nodeType==1) {
-      //vrsimo pretragu po autoru i komentaru 
-      if (stristr($y->item(0)->childNodes->item(0)->nodeValue,$q) || stristr($z->item(0)->childNodes->item(0)->nodeValue,$q)) {
-		    $odgovor=1;
-        print "<table>";
-		print "<TR>";
-		$s = "Autor: ".$y->item(0)->childNodes->item(0)->nodeValue;
-		print "<TD>$s</TD></TR>";
-		$kom = "Komentar: ".$z->item(0)->childNodes->item(0)->nodeValue;
-		print "<TD>$kom</TD>";
-		print "</TR>";
-		print "</table>"; 
-      }
-    }
-  }
-}
+	$sql = "SELECT * FROM komentar";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+    $q=$unos;
+	if (strlen($q)>0) {
+		while($row = $result->fetch_assoc()) {
+		  //vrsimo pretragu po autoru i komentaru 
+		  if (stristr($row["usluga"],$q) || stristr($row["tekst"],$q)) {
+				$odgovor=1;
+			print "<table>";
+			print "<TR>";
+			$s = "Usluga: ".$row["usluga"];
+			print "<TD>$s</TD></TR>";
+			$kom = "Komentar: ".$row["tekst"];
+			print "<TD>$kom</TD>";
+			print "</TR>";
+			print "</table>"; 
+		  }
+	  }
+	}
+	
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+
+	$conn->close();
 
 //ako nema odgovora
 if($odgovor == 0)

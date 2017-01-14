@@ -37,7 +37,7 @@ else{
 <?php
 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-	$podaci = simplexml_load_file('usluge.xml');
+
 //dodavanje 
 if(isset($_REQUEST['dodavanje'])){
 	$_SESSION['ponudaErr']="";
@@ -64,13 +64,27 @@ if(isset($_REQUEST['dodavanje'])){
 		print "<p>GREŠKA:".$_SESSION['ponudaErr']."</p>";
 		}
 			
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
 	if(!isset($_SESSION['ponudaErr']) || $_SESSION['ponudaErr']==""){
-		$child = $podaci->addChild("usluga");
-		$child->addChild("naziv", $naziv);
-		$child->addChild("trajanje", $trajanje);
-		$child->addChild("cijena", $cijena);
+		$sql = "INSERT INTO usluga (administrator, naziv, trajanje, cijena) VALUES (1, '$naziv', '$trajanje', '$cijena');";
 		
-		$podaci->asXML("usluge.xml");
+		if ($conn->multi_query($sql) === TRUE) {
+    echo "New records created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+
+	$conn->close();
 	}
 	
 	
@@ -81,26 +95,34 @@ if(isset($_REQUEST['brisanje'])){
 	$trajanje = htmlspecialchars($_REQUEST['trajanje']);
 	$cijena = htmlspecialchars($_REQUEST['cijena']);
 	$red = $_REQUEST['red'];
-	
-	$dom = new DOMDocument();
-	$dom->preserveWhiteSpace = false;
-	$dom->load('usluge.xml');
-	$usluge = $dom->getElementsByTagName('usluga');
-	
-	$br=1;
-	foreach($usluge as $u){
-		if($br == $red){
-			$u->parentNode->removeChild($u);
-		}
-		$br = $br + 1;
+		
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+
+	// sql to delete a record
+	$sql = "DELETE FROM usluga WHERE id=$red";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "Record deleted successfully";
+	} else {
+		echo "Error deleting record: " . $conn->error;
 	}
-	$dom->save('usluge.xml');
+
+	$conn->close();
 }
 
 //mijenjanje
 if(isset($_REQUEST['mijenjanje'])){
 		$_SESSION['ponudaErr']="";
-		$podaci = simplexml_load_file('usluge.xml');
 
 		$naziv = htmlspecialchars($_REQUEST['naziv']);
 		$trajanje = htmlspecialchars($_REQUEST['trajanje']);
@@ -127,35 +149,154 @@ if(isset($_REQUEST['mijenjanje'])){
 		}
 		
 		if(!isset($_SESSION['ponudaErr']) || $_SESSION['ponudaErr']==""){
-		$br = 1;
-		foreach ($podaci->children() as $up) {
 			
-			if($br == $red){ //napravila sam samo za ime, dodati za ostale elemente
-				$up->naziv = $naziv;
-				$up->trajanje = $trajanje;
-				$up->cijena = $cijena;
-			}
-			$br = $br + 1;
+		$servername = "localhost";
+		$username = "wtuser";
+		$password = "wtpassword";
+		$dbname = "wt_spirala4";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+
+		$sql = "UPDATE usluga SET naziv='$naziv', trajanje='$trajanje', cijena='$cijena' WHERE id=$red";
+
+		if ($conn->query($sql) === TRUE) {
+			echo "Record updated successfully";
+		} else {
+			echo "Error updating record: " . $conn->error;
 		}
-		file_put_contents("usluge.xml", $podaci->saveXML());
+
+		$conn->close();
 		}
 }
 
-$podaci = simplexml_load_file('usluge.xml');
-print "<h1>Ponuda</h1>";
-print "<table>";
-print "<TR><TH>Naziv</TH><TH>Trajanje</TH><TH>Cijena</TH></TR>";
-$br = 0;
-foreach($podaci->usluga as $u){
-	$br = $br + 1;
+//dodavanje u bazu onih koji nisu dodani
+if(isset($_REQUEST['ucitajBaza']))
+{
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	//ucitavam usluge.xml
+	$usluge = simplexml_load_file('usluge.xml');
+	foreach($usluge->usluga as $u)
+	{
+		$administrator = 1;
+		$naziv = $u->naziv;
+		$trajanje = $u->trajanje;
+		$cijena = $u->cijena;
+		echo $naziv;
+		$vecPostoji = "SELECT * FROM usluga where naziv='$naziv' and cijena='$cijena'";
+		$result = $conn->query($vecPostoji);
+		if($result->num_rows<1)
+		{
+		$sql = "INSERT INTO usluga (administrator, naziv, trajanje, cijena) VALUES ('$administrator', '$naziv', '$trajanje', '$cijena')";
+		
+		if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		}
+		
+		
+	}
+	
+	//ucitavanje komentari.xml
+	$komentari = simplexml_load_file('komentari.xml');
+	foreach($komentari->link as $u)
+	{
+		$proizvod = $u->autor;
+		$komentar = $u->komentar;
+		$vecPostoji = "SELECT * FROM komentar where usluga='$proizvod' and tekst='$komentar'";
+		$result = $conn->query($vecPostoji);
+		if($result->num_rows<1)
+		{
+		$sql = "INSERT INTO komentar (usluga, tekst) VALUES ('$proizvod', '$komentar')";
+		
+		if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		}
+		
+		
+	}
+	
+	//ucitavanje anketa.xml
+	$rAnketa = simplexml_load_file('anketa.xml');
+	foreach($rAnketa->odgovori as $u)
+	{
+		$p1 = $u->prvo;
+		$p2 = $u->drugo;
+		$p3 = $u->trece;
+		$vecPostoji = "SELECT * FROM anketa where pitanje1='$p1' and pitanje2='$p2' and pitanje3='$p3'";
+		$result = $conn->query($vecPostoji);
+		if($result->num_rows<1)
+		{
+		$sql = "INSERT INTO anketa (pitanje1, pitanje2, pitanje3) VALUES ('$p1', '$p2', '$p3')";
+		
+		if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		}
+		
+		
+	}
+
+	$conn->close();
+}
+
+
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+	$sql = "SELECT id, naziv, trajanje, cijena FROM usluga";
+	$result = $conn->query($sql);
+	
+	print "<h1>Ponuda</h1>";
+	print "<table>";
+	print "<TR><TH>Naziv</TH><TH>Trajanje</TH><TH>Cijena</TH></TR>";
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) 
+	{
+        //echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
 	print "<TR><form action='ponuda.php' method='POST'>";
-	print "<TD><input type='text' name='naziv' value='".$u->naziv."'></TD>";
-	print "<TD><input type='text' name='trajanje' value='".$u->trajanje."'></TD>";
-	print "<TD><input type='text' name='cijena' value='".$u->cijena."'></TD>";
-	print "<TD><input type='hidden' name='red' value='".$br."'><input type='submit' name='brisanje' value='-'> <input type='submit' name='mijenjanje' value= 'E'></TD>";
+	print "<TD><input type='text' name='naziv' value='".$row["naziv"]."'></TD>";
+	print "<TD><input type='text' name='trajanje' value='".$row["trajanje"]."'></TD>";
+	print "<TD><input type='text' name='cijena' value='".$row["cijena"]."'></TD>";
+	print "<TD><input type='hidden' name='red' value='".$row["id"]."'><input type='submit' name='brisanje' value='-'> <input type='submit' name='mijenjanje' value= 'E'></TD>";
 	print "</form></TR>";
+    }
+} else {
+    echo "0 results";
 }
-
+$conn->close();
 print "</table>";  
  print "<table>";
  print "<TR><form action='ponuda.php' method='POST'><TD><input type='text' name='naziv'> <input type='text' name='trajanje'> <input type='text' name='cijena'> <input type='submit' name='dodavanje' value='+'></TD></form></TR>";
@@ -166,28 +307,48 @@ print "</table>";
 print "</br>";
 print "<form><input type='submit' name='downloadCSV' value='Download'></form>"; 
 print "</br>";
+print "<form><input type='submit' name='ucitajBaza' value='Ucitaj u bazu'></form></br>";
 }
+//ako nije logovan admin
 else{
-	$podaci = simplexml_load_file('usluge.xml');
+	$servername = "localhost";
+	$username = "wtuser";
+	$password = "wtpassword";
+	$dbname = "wt_spirala4";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+	$sql = "SELECT id, naziv, trajanje, cijena FROM usluga";
+	$result = $conn->query($sql);
 print "<h1>Ponuda</h1>";
 print "<table>";
 print "<TR><TH>Naziv</TH><TH>Trajanje</TH><TH>Cijena</TH></TR>";
-$br = 0;
-foreach($podaci->usluga as $u){
-	$br = $br + 1;
-	print "<TR><form action='ponuda.php' method='POST'>";
-	print "<TD><input type='text' name='naziv' value='".$u->naziv."'></TD>";
-	print "<TD><input type='text' name='trajanje' value='".$u->trajanje."'></TD>";
-	print "<TD><input type='text' name='cijena' value='".$u->cijena."'></TD>";
-	print "</form></TR>";
-}
 
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) 
+	{	
+	print "<TR><form action='ponuda.php' method='POST'>";
+	print "<TD><input type='text' name='naziv' value='".$row["naziv"]."'></TD>";
+	print "<TD><input type='text' name='trajanje' value='".$row["trajanje"]."'></TD>";
+	print "<TD><input type='text' name='cijena' value='".$row["cijena"]."'></TD>";
+	print "</form></TR>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
 print "</table>"; 
 
 }
 if(isset($_REQUEST['pdfIspis'])){
-	print "ovo je pdf!";
-	header("Location: izvjestajpdf.php");
+	echo("<script>location.href = 'izvjestajpdf.php';</script>");
+
 }
 print "<form><input type='submit' name='pdfIspis' value='Printaj'></form>";
 

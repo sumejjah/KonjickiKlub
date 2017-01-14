@@ -24,35 +24,102 @@ else{
 if(isset($_REQUEST['komentarisi'])){
 	$_SESSION['komentarErr']="";
 	$ime = htmlspecialchars($_REQUEST['ime']);
-	$mail = htmlspecialchars($_REQUEST['email']);
 	$kom = htmlspecialchars($_REQUEST['message']);
 	
 	if(strlen($ime)<3) {
 		$_SESSION['komentarErr']='Naziv mora biti duži od 3 slova.';
 		print "<p>GREŠKA:".$_SESSION['komentarErr']."</p>";
 		}
-		
-	if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-	$_SESSION['komentarErr'] = "Invalid email format"; 
-	}
 	
 	if(strlen($kom)<10) {
 		$_SESSION['komentarErr']='Komentar mora biti imati minimalno 10 znakova.';
 		print "<p>GREŠKA:".$_SESSION['komentarErr']."</p>";
 		}
 	
-	$podaci = simplexml_load_file('komentari.xml');
+	//$podaci = simplexml_load_file('komentari.xml');
 	if(!isset($_SESSION['komentarErr']) || $_SESSION['komentarErr']==""){
-		$child = $podaci->addChild("link");
+		/*$child = $podaci->addChild("link");
 		$child->addChild("autor", $ime);
 		$child->addChild("mail", $mail);
 		$child->addChild("komentar", $kom);
 		
-		$podaci->asXML("komentari.xml");
+		$podaci->asXML("komentari.xml");*/
+		$servername = "localhost";
+		$username = "wtuser";
+		$password = "wtpassword";
+		$dbname = "wt_spirala4";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		$sql = "SELECT * FROM usluga WHERE naziv='$ime'";
+		$rezultat = $conn->query($sql);
+		if ($rezultat === false) {
+			echo "greska: " . $conn->error;
+		}
+		else{
+			$row = $rezultat->fetch_assoc();
+			echo $row["id"]."majko mila";
+			$u = $row["id"];
+		}
+		$conn->close();
+		
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		//dodati komentar za odgovarajuci proizvod
+		$sql2 = "INSERT INTO komentar (usluga, tekst) VALUES ('$u', '$kom');";
+		if ($conn->query($sql2) === TRUE) {
+		echo "Komentar dodan u bazu";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		$conn->close();
+
 	}
 }
 
 ?>
+
+
+<?php
+
+// php select option value from database
+
+$hostname = "localhost";
+$username = "wtuser";
+$password = "wtpassword";
+$databaseName = "wt_spirala4";
+
+// connect to mysql database
+
+$connect = mysqli_connect($hostname, $username, $password, $databaseName);
+
+// mysql select query
+$query = "SELECT * FROM `usluga`";
+
+// for method 1
+
+$result1 = mysqli_query($connect, $query);
+
+// for method 2
+
+$result2 = mysqli_query($connect, $query);
+
+$options = "";
+
+while($row2 = mysqli_fetch_array($result2))
+{
+    $options = $options."<option>$row2[1]</option>";
+}
+
+?>
+
 <div class="meni">
   <div class="kolona prazno"></div>
   <div class="kolona pet"><a href="zadaca.php">O nama</a></div>
@@ -75,19 +142,24 @@ if(isset($_REQUEST['komentarisi'])){
         <span>Napišite komentar.</span>
     </h1>
     <label>
-        <span>Ime:</span>
-        <input id="name" type="text" name="ime" placeholder="Puno ime"/>
-    </label>
+        <span>Naziv usluge:</span>
+        <!--<input id="name" type="text" name="ime" placeholder="Puno ime"/>-->
+		<select name="ime">
 
-    <label>
-        <span>Email :</span>
-        <input id="email" type="email" name="email" placeholder="Email" required/>
-    </label>
+            <?php while($row1 = mysqli_fetch_array($result1)):;?>
+
+            <option value="<?php echo $row1[2];?>"><?php echo $row1[2];?></option>
+
+            <?php endwhile;?>
+
+        </select>
+	</label>
 
     <label>
         <span>Komentar :</span>
         <textarea id="message" name="message" placeholder="Vaše iskustvo"></textarea>
-    </label>
+		        
+	</label>
 
      <label>
         <span>&nbsp;</span>
