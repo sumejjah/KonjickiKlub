@@ -1,6 +1,6 @@
 <?php
  header('Content-type: application/json');
-    class InventoryAPI {
+    class Metoda {
     private $db;
     function __construct() 
 	{
@@ -11,7 +11,7 @@
 	{
 		$this->db->close();
     }
-    function checkInv() {
+    function checkMetoda() {
     $query = "SELECT * FROM usluga";
     $result = $this->db->query($query);
     $rows = array();
@@ -26,6 +26,6 @@
     echo json_encode($rows);
     }
 }
-$api = new InventoryAPI;
-$api->checkInv();
+$api = new Metoda;
+$api->checkMetoda();
 ?>
