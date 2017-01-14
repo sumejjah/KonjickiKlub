@@ -43,7 +43,6 @@ else{
   <div class="map" id="map"></div>
   
     <div class="red">
-      <div class="kolona dva lijevo">
         <h3>Radno vrijeme</h3>
           <div>15:00 - 18:30</div>
           <div id="napomena">Ukoliko zelite zakazati cas, potrebno
@@ -54,32 +53,7 @@ else{
             osoblje ce Vam uzvratiti poziv u najkracem mogucem roku.</div>
             <div id="napomena">Kontak telefon : +38762 530 530</div>
             <div>Sarajevska bb, Stara kasarna "Ahmet Fetahagic", 71300 Visoko,</div>
-      </div>
-      <div class="kolona dva">
-        <!--forma za pitanja-->
-        <form action="" class="formaPitanje" name="formaPitanje" onsubmit="return validirajPitanje();">
-          <h3>Postavite pitanje</h3>
-          <label>
-            <input id="ime" type="text" name="ime" placeholder="Ime i prezime"/>
-          </label>
-          <label>
-            <input id="email" type="email" name="email" pattern="[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="Email" required/>
-          </label>
-          <label>
-            <input id="telefon" type="text" name="telefon" pattern="[0-9]*" placeholder="Broj telefona" required/>
-          </label>
-          <label>
-            <textarea id="pitanje" name="pitanje" placeholder="Pitanje?"></textarea>
-          </label>
-
-          <label>
-            <input type="submit" class="button" value="Posalji pitanje"/>
-          </label>
-		  <label>
-			<p id="poruka" name="poruka"></p>
-		  </label>
-        </form>
-      </div>
+      
     </div>
 
 </body>
