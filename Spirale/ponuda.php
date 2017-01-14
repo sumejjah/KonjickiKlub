@@ -112,9 +112,9 @@ if(isset($_REQUEST['brisanje'])){
 	$sql = "DELETE FROM usluga WHERE id=$red";
 
 	if ($conn->query($sql) === TRUE) {
-		echo "Record deleted successfully";
+		echo "Uspjesno ibrisan iz baze";
 	} else {
-		echo "Error deleting record: " . $conn->error;
+		echo "Greška: " . $conn->error;
 	}
 
 	$conn->close();
@@ -165,9 +165,9 @@ if(isset($_REQUEST['mijenjanje'])){
 		$sql = "UPDATE usluga SET naziv='$naziv', trajanje='$trajanje', cijena='$cijena' WHERE id=$red";
 
 		if ($conn->query($sql) === TRUE) {
-			echo "Record updated successfully";
+			echo "Uspjesno izvrsen update.";
 		} else {
-			echo "Error updating record: " . $conn->error;
+			echo "Greška: " . $conn->error;
 		}
 
 		$conn->close();
@@ -282,10 +282,8 @@ if(isset($_REQUEST['ucitajBaza']))
 	print "<TR><TH>Naziv</TH><TH>Trajanje</TH><TH>Cijena</TH></TR>";
 
 if ($result->num_rows > 0) {
-    // output data of each row
     while($row = $result->fetch_assoc()) 
 	{
-        //echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
 	print "<TR><form action='ponuda.php' method='POST'>";
 	print "<TD><input type='text' name='naziv' value='".$row["naziv"]."'></TD>";
 	print "<TD><input type='text' name='trajanje' value='".$row["trajanje"]."'></TD>";

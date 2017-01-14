@@ -91,7 +91,7 @@ if(isset($_REQUEST['anketiranje'])){
 	if ($conn->query($sql) === TRUE) {
     echo "";
 	} else {
-		echo "Error: " . $sql . "<br>" . $conn->error;
+		echo "Greška: " . $sql . "<br>" . $conn->error;
 	}
 
 	$conn->close();
@@ -135,13 +135,12 @@ if(isset($_REQUEST['anketiranje'])){
 	$da1 = 0; $da2 = 0; $da3=0; $ne1 = 0; $ne2 = 0; $ne3 = 0;
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			//echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
 			if($row["pitanje1"] == 'Da') {$da1 = $da1+1;} else {$ne1 = $ne1 + 1;}
 			if($row["pitanje2"] == 'Da') {$da2 = $da2+1;} else {$ne2 = $ne2 + 1;}
 			if($row["pitanje3"] == 'Da') {$da3 = $da3+1;} else {$ne3 = $ne3 + 1;}
 		}
 	} else {
-		echo "0 results";
+		echo "Nema rezultata :/";
 	}
 	$conn->close();
 	

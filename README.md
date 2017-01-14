@@ -85,7 +85,7 @@ c) Prepravila sam sve PHP skripte tako da se podaci cuvaju i kupe iz baze a ne i
 
 d) Deployment:
 
-e) Unutar skripte vratiJSON.php predstavlja traženu metodu. 
+e) Unutar skripte vratiJSON.php je upisana metoda. 
 
 f) U folderu POSTMANscreenshot su screenshoti za tri tabele: usluga, anketa i komentar.
 

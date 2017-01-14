@@ -37,7 +37,7 @@ if(isset($_REQUEST['login'])){
 				}
 			}
 		} else {
-			echo "0 results";
+			echo "Nema rezultata :(";
 		}
 		$conn->close();
 	
